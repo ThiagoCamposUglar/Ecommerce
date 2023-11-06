@@ -11,11 +11,11 @@ namespace API.Extensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddIdentityCore<User>(opt =>
+            services.AddIdentityCore<AppUser>(opt =>
             {
-               //por enquanto vai ficar vazio pq não sei pra que eu vou usar 
-            }).AddRoles<Role>()
-              .AddRoleManager<RoleManager<Role>>()
+               opt.User.RequireUniqueEmail = true;
+            }).AddRoles<AppRole>()
+              .AddRoleManager<RoleManager<AppRole>>()
               .AddEntityFrameworkStores<DataContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -32,6 +32,7 @@ namespace API.Extensions
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                opt.AddPolicy("RequireClientRole", policy => policy.RequireRole("Client"));
             });
 
             return services;

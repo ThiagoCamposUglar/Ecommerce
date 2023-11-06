@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class DataContext : IdentityDbContext<User, 
-                                                 Role, 
+    public class DataContext : IdentityDbContext<AppUser, 
+                                                 AppRole, 
                                                  int, 
                                                  IdentityUserClaim<int>, 
-                                                 UserRole, 
+                                                 AppUserRole, 
                                                  IdentityUserLogin<int>, 
                                                  IdentityRoleClaim<int>, 
                                                  IdentityUserToken<int>>
@@ -21,6 +21,18 @@ namespace API.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<AppUser>()
+                    .HasMany(x => x.UserRoles)
+                    .WithOne(x => x.User)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired();
+
+            builder.Entity<AppRole>()
+                    .HasMany(x => x.UserRoles)
+                    .WithOne(x => x.Role)
+                    .HasForeignKey(x => x.RoleId)
+                    .IsRequired();
         }
     }
 }
