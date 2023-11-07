@@ -42,6 +42,7 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Id = user.Id,
                 UserName = user.UserName.Split(' ')[0],
                 Token = await _tokenService.CreateToken(user)
             };
@@ -60,6 +61,7 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Id = user.Id,
                 UserName = user.UserName.Split(" ")[0],
                 Token = await _tokenService.CreateToken(user)
             };
