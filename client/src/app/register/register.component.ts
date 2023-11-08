@@ -31,10 +31,22 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     })
+    this.registerForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    })
   }
 
   register(){
-
+    const dob = this.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
+    const values = {...this.registerForm.value, dateOfBirth: dob};
+    this.accountService.register(values).subscribe({
+      next: () =>{
+        this.router.navigateByUrl('/')
+      },
+      error: error => {
+        this.validationErrors = error;
+      }
+    })
   }
 
   matchValues(matchTo: string) : ValidatorFn {

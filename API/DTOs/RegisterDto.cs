@@ -13,7 +13,7 @@ namespace API.DTOs
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public DateOnly? DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [Required]
         [StringLength(16, MinimumLength = 8)]
         public string Password { get; set; }

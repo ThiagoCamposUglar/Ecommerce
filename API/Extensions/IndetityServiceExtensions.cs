@@ -14,6 +14,7 @@ namespace API.Extensions
             services.AddIdentityCore<AppUser>(opt =>
             {
                opt.User.RequireUniqueEmail = true;
+               opt.Password.RequireNonAlphanumeric = false;
             }).AddRoles<AppRole>()
               .AddRoleManager<RoleManager<AppRole>>()
               .AddEntityFrameworkStores<DataContext>();
@@ -32,7 +33,7 @@ namespace API.Extensions
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-                opt.AddPolicy("RequireClientRole", policy => policy.RequireRole("Client"));
+                opt.AddPolicy("RequireCustomerRole", policy => policy.RequireRole("Customer"));
             });
 
             return services;

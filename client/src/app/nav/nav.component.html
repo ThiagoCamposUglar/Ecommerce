@@ -3,15 +3,21 @@
         <a class="navbar-brand" routerLink="/" routerLinkActive="active">E-commerce</a>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <ng-container *ngIf="accountService.currentUser$ | async">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/members" routerLinkActive="active">Categorias</a>
+                <li>
+                    <div class="btn-group" dropdown>
+                        <button id="button-basic" dropdownToggle type="button" class="btn btn-dark dropdown-toggle" aria-controls="dropdown-basic">
+                          Categorias <span class="caret"></span>
+                        </button>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                          <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                      </div>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown"  dropdown>
-                        <div class="dropdown-menu mt-3" *dropdownMenu>
-                            <a class="dropdown-item" *ngFor="let category of categories" routerLink="">{{category.name}}</a>
-                        </div>
-                    </div>
+                    <a class="nav-link">Produtos</a>
                 </li>
                 <!-- <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
                     <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
@@ -21,7 +27,8 @@
 
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <img src="{{'./assets/user.png'}}" alt="user photo">
-            <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Olá, {{user.userName | titlecase}}</a>
+            <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Olá, {{user.userName |
+                titlecase}}</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <a class="dropdown-item" routerLink="/">Minha conta</a>
                 <a class="dropdown-item" (click)="logout()">Sair</a>
