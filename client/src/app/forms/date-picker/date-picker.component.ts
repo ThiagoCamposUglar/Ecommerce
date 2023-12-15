@@ -1,6 +1,9 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale('pt-br', ptBrLocale)
 
 @Component({
   selector: 'app-date-picker',
@@ -12,11 +15,12 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() maxDate: Date | undefined;
   bsConfig: Partial<BsDatepickerConfig> | undefined;
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(@Self() public ngControl: NgControl, private localeService: BsLocaleService) {
     this.ngControl.valueAccessor = this;
+    this.localeService.use('pt-br')
     this.bsConfig = {
       containerClass: 'theme-blue',
-      dateInputFormat: 'DD MMMM YYYY'
+      dateInputFormat: 'YYYY/MM/DD'
     }
   }
 

@@ -18,6 +18,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { RegisterComponent } from './register/register.component';
 import { TextInputComponent } from './forms/text-input.component';
 import { DatePickerComponent } from './forms/date-picker/date-picker.component';
+import { AccountHomeComponent } from './account/account-home/account-home.component';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { DatePickerComponent } from './forms/date-picker/date-picker.component';
     ServerErrorComponent,
     RegisterComponent,
     TextInputComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    AccountHomeComponent,
+    AccountEditComponent
   ],
   imports: [
     BrowserModule,

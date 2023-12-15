@@ -32,7 +32,7 @@ namespace API.Controllers
 
             user.Email = registerDto.Email.ToLower();
 
-            var result = await _userManager.CreateAsync(user);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
@@ -44,6 +44,7 @@ namespace API.Controllers
             {
                 Id = user.Id,
                 UserName = user.UserName.Split(' ')[0],
+                Email = user.Email,
                 Token = await _tokenService.CreateToken(user)
             };
         }
@@ -63,6 +64,7 @@ namespace API.Controllers
             {
                 Id = user.Id,
                 UserName = user.UserName.Split(" ")[0],
+                Email = user.Email,
                 Token = await _tokenService.CreateToken(user)
             };
         }

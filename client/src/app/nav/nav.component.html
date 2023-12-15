@@ -6,7 +6,7 @@
                 <li>
                     <div class="btn-group" dropdown>
                         <button id="button-basic" dropdownToggle type="button" class="btn btn-dark dropdown-toggle" aria-controls="dropdown-basic">
-                          Categorias <span class="caret"></span>
+                          Departamentos <span class="caret"></span>
                         </button>
                         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
                           <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
@@ -30,7 +30,7 @@
             <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Olá, {{user.userName |
                 titlecase}}</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
-                <a class="dropdown-item" routerLink="/">Minha conta</a>
+                <a class="dropdown-item" routerLink="/my-account">Minha conta</a>
                 <a class="dropdown-item" (click)="logout()">Sair</a>
             </div>
         </div>

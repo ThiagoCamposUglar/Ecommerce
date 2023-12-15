@@ -4,6 +4,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @NgModule({
@@ -12,16 +13,21 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CommonModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-top-center'
     }),
     BsDatepickerModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
   exports: [
     ToastrModule,
     BsDropdownModule,
     BsDatepickerModule,
-    CarouselModule
-  ]
+    CarouselModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+  ],
+  providers: [provideNgxMask()]
 })
 export class SharedModule { }

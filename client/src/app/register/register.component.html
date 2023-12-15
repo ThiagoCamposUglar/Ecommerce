@@ -4,9 +4,9 @@
             <h2 class="text-center text-primary">Criar conta</h2>
             <hr>
             <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'Nome'"></app-text-input>
-            <app-text-input [formControl]="$any(registerForm.controls['cpf'])" [label]="'CPF'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['cpf'])" [label]="'CPF'" [mask]="'000.000.000-00'"></app-text-input>
             <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Data de nascimento'" [maxDate]="maxDate"></app-date-picker>
-            <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'Telefone celular'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'Telefone celular'" [mask]="'(00) 00000-0000'"></app-text-input>
             <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'E-mail'"></app-text-input>
             <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Senha'" [type]="'password'"></app-text-input>
             <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirme sua senha'" [type]="'password'"></app-text-input>

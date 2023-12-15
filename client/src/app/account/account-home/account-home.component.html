@@ -1,0 +1,13 @@
+<div class="row align-items-md-stretch" *ngIf="user">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h2>Bem vindo, {{user.userName}} <button class="btn btn-dark" routerLink="/account/edit"><i class="fa fa-cog fa-2x fa-spin"></i></button></h2>
+            <h3><i class="fa fa-envelope"></i> {{user.email}}</h3>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h1>Lista de desejos</h1>
+        </div>
+    </div>
+</div>

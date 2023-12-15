@@ -3,6 +3,7 @@ import { AccountService } from '../services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DateUtilService } from '../services/date-util.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   maxDate: Date = new Date();
   validationErrors: string[] | undefined;
 
-  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder, private router: Router) {}
+  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder, private router: Router, private dateUtil: DateUtilService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -24,9 +25,9 @@ export class RegisterComponent implements OnInit {
   initializeForm() {
     this.registerForm = this.fb.group({
       userName: ['', Validators.required],
-      cpf: ['', Validators.required],
+      cpf: ['', [Validators.required, Validators.pattern('\\d{11}')]],
       dateOfBirth: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('\\d{11}')]],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    const dob = this.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
+    const dob = this.dateUtil.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
     const values = {...this.registerForm.value, dateOfBirth: dob};
     this.accountService.register(values).subscribe({
       next: () =>{
@@ -54,11 +55,4 @@ export class RegisterComponent implements OnInit {
       return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
     }
   }
-
-  private getDateOnly(dob: string | undefined) {
-    if(!dob) return;
-    let theDob = new Date(dob);
-    return new Date(theDob.setMinutes(theDob.getMinutes() - theDob.getTimezoneOffset())).toISOString().slice(0, 10);
-  }
-
 }

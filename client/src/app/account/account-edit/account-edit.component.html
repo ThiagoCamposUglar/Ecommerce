@@ -1,0 +1,49 @@
+<h3 style="padding-left: 20px; padding-bottom: 20px;"><i class="fa fa-user" aria-hidden="true"></i> MEUS DADOS</h3>
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+            <p><i class="fa fa-file-text" aria-hidden="true"></i> DADOS BÁSICOS</p>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary w-100" type="button">ALTERAR E-MAIL</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary w-100" type="button">ALTERAR SENHA</button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <form [formGroup]="accountEditForm" (ngSubmit)="accountEditForm.valid && update()" autocomplete="off">
+                        <app-text-input [formControl]="$any(accountEditForm.controls['userName'])" [label]="'Nome'"></app-text-input>
+                        <app-text-input [formControl]="$any(accountEditForm.controls['phoneNumber'])" [label]="'Telefone celular'" [mask]="'(00) 00000-0000'"></app-text-input>
+                        <app-date-picker [formControl]="$any(accountEditForm.controls['dateOfBirth'])" [label]="'Data de nascimento'" [maxDate]="maxDate"></app-date-picker>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" value="{{this.customer?.email}}" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" value="{{this.customer?.cpf! | mask: '000.000.000-00'}}" disabled>
+                        </div>
+                        <div *ngIf="validationErrors">
+                            <ul class="text-danger">
+                                <li *ngFor="let error of validationErrors">
+                                    {{error}}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="text-center pt-3">
+                            <button [disabled]="!accountEditForm.valid || !accountEditForm.dirty" class="btn btn-success w-100"
+                                type="submit">SALVAR ALTERAÇÕES</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+            <p><i class="fa fa-map-marker" aria-hidden="true"></i> ENDEREÇOS</p>
+        </div>
+    </div>
+</div>

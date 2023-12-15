@@ -18,9 +18,25 @@ namespace API.Data
         {
         }
 
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Department> Departments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Department>()
+                    .HasMany(x => x.Categories)
+                    .WithOne(x => x.Department)
+                    .HasForeignKey(x => x.DepartmentId)
+                    .IsRequired();
+
+            builder.Entity<Category>()
+                    .HasMany(x => x.Products)
+                    .WithOne(x => x.Category)
+                    .HasForeignKey(x => x.CategoryId)
+                    .IsRequired();
 
             builder.Entity<AppUser>()
                     .HasMany(x => x.UserRoles)

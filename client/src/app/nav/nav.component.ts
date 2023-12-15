@@ -10,7 +10,7 @@ import { Category } from '../models/category';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  categories: Category[] | undefined;
+  departments: Category[] | undefined;
 
   constructor(public accountService: AccountService, private router: Router) {}
 
@@ -21,6 +21,10 @@ export class NavComponent implements OnInit {
   logout(){
     this.accountService.logout();
     this.router.navigateByUrl('/');
+  }
+
+  getDepartments(){
+    
   }
 
   getCategories(){
