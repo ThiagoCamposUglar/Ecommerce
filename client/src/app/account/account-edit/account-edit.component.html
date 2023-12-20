@@ -15,13 +15,18 @@
             <div class="row mt-4">
                 <div class="col">
                     <form [formGroup]="accountEditForm" (ngSubmit)="accountEditForm.valid && update()" autocomplete="off">
-                        <app-text-input [formControl]="$any(accountEditForm.controls['userName'])" [label]="'Nome'"></app-text-input>
-                        <app-text-input [formControl]="$any(accountEditForm.controls['phoneNumber'])" [label]="'Telefone celular'" [mask]="'(00) 00000-0000'"></app-text-input>
-                        <app-date-picker [formControl]="$any(accountEditForm.controls['dateOfBirth'])" [label]="'Data de nascimento'" [maxDate]="maxDate"></app-date-picker>
+                        <label for="name">Nome:</label>
+                        <app-text-input id="name" [formControl]="$any(accountEditForm.controls['userName'])" [label]="'Nome'"></app-text-input>
+                        <label for="phoneNumber">Telefone celular:</label>
+                        <app-text-input id="phoneNumber" [formControl]="$any(accountEditForm.controls['phoneNumber'])" [label]="'Telefone celular'" [mask]="'(00) 00000-0000'"></app-text-input>
+                        <label for="dateOfBirth">Data de nascimento:</label>
+                        <app-date-picker id="dateOfBirth" [formControl]="$any(accountEditForm.controls['dateOfBirth'])" [label]="'Data de nascimento'" [maxDate]="maxDate"></app-date-picker>
+                        <label for="email">E-mail:</label>
                         <div class="mb-3">
-                            <input type="text" class="form-control" value="{{this.customer?.email}}" disabled>
+                            <input id="email" type="text" class="form-control" value="{{this.customer?.email}}" disabled>
                         </div>
-                        <div class="mb-3">
+                        <label for="cpf">CPF:</label>
+                        <div id="cpf" class="mb-3">
                             <input type="text" class="form-control" value="{{this.customer?.cpf! | mask: '000.000.000-00'}}" disabled>
                         </div>
                         <div *ngIf="validationErrors">

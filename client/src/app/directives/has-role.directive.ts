@@ -26,5 +26,4 @@ export class HasRoleDirective implements OnInit {
       this.vcr.clear();
     }
   }
-
 }

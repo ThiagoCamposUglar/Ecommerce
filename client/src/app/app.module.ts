@@ -20,6 +20,11 @@ import { TextInputComponent } from './forms/text-input.component';
 import { DatePickerComponent } from './forms/date-picker/date-picker.component';
 import { AccountHomeComponent } from './account/account-home/account-home.component';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { DepartmentManagementComponent } from './admin/department-management/department-management.component';
+import { CategoryManagementComponent } from './admin/category-management/category-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { ProductManagementComponent } from './admin/product-management/product-management.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,13 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
     TextInputComponent,
     DatePickerComponent,
     AccountHomeComponent,
-    AccountEditComponent
+    AccountEditComponent,
+    AdminPanelComponent,
+    HasRoleDirective,
+    DepartmentManagementComponent,
+    CategoryManagementComponent,
+    UserManagementComponent,
+    ProductManagementComponent
   ],
   imports: [
     BrowserModule,
